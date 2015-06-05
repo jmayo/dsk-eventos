@@ -26,5 +26,7 @@ Personal.Collections.Catalogos = Backbone.Collection.extend({
   Fuente: function () {
 		return this.where({catalogos: 3});
 	},
-
+  Criticidad: function () {
+    return this.where({catalogos: 3});
+  },
 });

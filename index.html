@@ -291,6 +291,46 @@
 		{{{titulos_caja id label_desc="id_principal" label_id='evento_id'}}}
 		{{{grp_perdetTextArea "Descripción" textarea_id='evento_descripcion' valor=descripcion   label_desc='descripcion' textarea_desc='Descripción'}}}
   		{{{grp_combo "Fuente"    label_desc='fuente' select_name='fuente' select_id='evento_fuente'}}} 
+  		<li class="li_bloque">
+			<label class="etiquetas_bloque" for="criticidad_capturista">Criticidad Inicial</label>
+			<select name="criticidad_capturista" class="select_bloque">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+			</select>
+			<div class="viñeta"></div>
+		</li>
+		<li class="li_bloque">
+			<label class="etiquetas_bloque" for="criticidad_evaluador">Criticidad Final</label>
+			<select name="criticidad_evaluador" class="select_bloque">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+			</select>
+			<div class="viñeta"></div>
+		</li>
+
+		{{{grp_perdet "Reporta" valor=reporta  input_id='evento_reporta'   label_desc='reporta' input_desc='Reporta'}}}
+		{{{grp_combo "Estado"    label_desc='estado' select_name='evento_estado' select_id='evento_estado'}}} 
+		{{{grp_combo "Municipio"    label_desc='municipio' select_name='evento_municipio' select_id='evento_municipio'}}}		
+	{{{grp_perdetTextArea "Observaciones" textarea_id='evento_observaciones' valor=observaciones   label_desc='observaciones' textarea_desc='Observaciones'}}}
+
+	{{{grp_perdet "Fecha Captura" valor=fecha_capturista input_id='evento_fecha_capturista' label_desc='fecha_capturista' input_desc='Fecha de Captura'}}}
+	{{{grp_perdet "Fecha Revisión" valor=fecha_filtro input_id='evento_fecha_filtro' label_desc='fecha_filtro' input_desc='Fecha de Revisión'}}}
+	{{{grp_perdet "Fecha Evaluación" valor=fecha_evaluador input_id='evento_fecha_evaluador' label_desc='fecha_evaluador' input_desc='Fecha de Evaluación'}}}
+		
+	{{{grp_options "revisada"  radio_id='evento_revisada' label_desc='revisada' op1_titulo="Si" op2_titulo="No" op1_val=true op2_val=false  op1_checado=revisada radio_name='evento_revisada' input_booleano=revisada}}}   
+		
+  		
+
   		</ul>
 	</div>
 </div>
@@ -300,8 +340,8 @@
   <script type="text/javascript" src="js/views/contenido.js"></script>
    <script type="text/javascript" src="js/views/cajaOperaciones.js"></script>
   <script type="text/javascript" src="js/views/cajaBusqueda.js"></script>
- <script type="text/javascript" src="js/views/eventoCatalogos.js"></script> 
    <script type="text/javascript" src="js/views/eventoCatalogo.js"></script>
+ <script type="text/javascript" src="js/views/eventoCatalogos.js"></script> 
   <script type="text/javascript" src="js/views/eventoDetalle.js"></script>
  
   <script type="text/javascript" src="js/routers/router.js"></script>

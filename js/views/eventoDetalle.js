@@ -1,7 +1,7 @@
 Personal.Views.EventoDetalle = Backbone.View.extend({
-  // events : {
-  //    "change #empresa_estado": function(){ this.llenadoComboDependiente(this.catMunicipio,'1', $( "#evento_estado").val(),'',"#evento_municipio");},
-  //  },
+  events : {
+     "change #evento_estado": function(){ this.llenadoComboDependiente(this.catMunicipio,'2', $( "#evento_estado").val(),'',"#evento_municipio");},
+   },
 
   el: $('#bloque_evento'),
   className: 'ul_bloque',
@@ -9,7 +9,7 @@ Personal.Views.EventoDetalle = Backbone.View.extend({
   template: Handlebars.compile($("#eventos-detalle-template").html()),
 
   initialize: function () {
-    //this.catMunicipio = new Personal.Collections.Catalogos();  
+    this.catMunicipio = new Personal.Collections.Catalogos();  
     this.catFuente = new Personal.Collections.Catalogos();  
     this.listenTo(this.model, "change", this.llenado, this);
   },
@@ -37,18 +37,19 @@ Personal.Views.EventoDetalle = Backbone.View.extend({
    this.agregarValidacion();
 
     var EventoCatalogos = new Personal.Collections.Catalogos();
-    EventoCatalogos.claves ="3";
+    EventoCatalogos.claves ="1,3";
   
     EventoCatalogos.fetch(
       {
         success: function(){
           
           self.llenadoCatalogosCombo(EventoCatalogos.Fuente(),detalle["cdu_fuente"],"#evento_fuente");
+          self.llenadoCatalogosCombo(EventoCatalogos.Estado(),detalle["cdu_estado"],"#evento_estado");
 
         }
           
     });
-
+             this.llenadoComboDependiente(this.catMunicipio,'2', detalle["cdu_estado"],detalle["cdu_municipio"],"#evento_municipio");
 
     },
     llenadoCatalogosCombo: function(catalogo,cdu_seleccion,id_selector){
@@ -64,19 +65,25 @@ Personal.Views.EventoDetalle = Backbone.View.extend({
       var cat = catalogo;
       catalogo.fetch({
               success: function(){
-                  var vista = new Personal.Views.PersonalCatalogos({
+                  var vista = new Personal.Views.EventoCatalogos({
                    collection: cat,cdu_seleccionado: cdu_seleccion ,id_select: id_selector });
                   vista.render();
                 }
             });
-      this.mostrarSucursalLista(this.model.get("id"));
-     
+      
       },
 relacionColumnas: function(){
       var columnasCampos ={
      		"id": "#evento_id",
 				"descripcion": "#evento_descripcion",
 				"cdu_fuente": "#evento_fuente",
+        "reporta": "#evento_reporta",
+        "cdu_estado": "#evento_estado",
+        "cdu_municipio": "#evento_municipio",
+        "fecha_capturista": "#evento_fecha_capturista",
+        "fecha_filtro": "#evento_fecha_filtro",
+        "fecha_evaluador": "#evento_fecha_evaluador",
+        "revisada": "#evento_revisada",
 			     };
       return columnasCampos;
    },
