@@ -53,6 +53,22 @@
 		</ul>
 	</div>
 	<section class="contenido">
+		<article class="div_empresa_servicio">
+			<div id="sucursal_listado">
+				<a href="#" class="lnk_servicio">
+					<div class="div_servicio">1, evento a</div>
+				</a>
+				<a href="#" class="lnk_servicio">
+					<div class="div_servicio">2, evento b</div>
+				</a>
+				<a href="#" class="lnk_servicio">
+					<div class="div_servicio">3, evento c</div>
+				</a>
+				<a href="#" class="lnk_servicio">
+					<div class="div_servicio">4, evento d</div>
+				</a>
+			</div>
+		</article>
 		<article class="bloque">
 			<div class="titulo_bloque">
 				Evento
@@ -79,8 +95,21 @@
 							<div class="viñeta"></div>
 						</li>
 						<li class="li_bloque">
-							<label class="etiquetas_bloque" for="criticidad">Criticidad</label>
-							<select name="criticidad" class="select_bloque">
+							<label class="etiquetas_bloque" for="criticidad_a">Criticidad</label>
+							<select name="criticidad_a" class="select_bloque">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+							</select>
+							<div class="viñeta"></div>
+						</li>
+						<li class="li_bloque">
+							<label class="etiquetas_bloque" for="criticidad_c">Criticidad</label>
+							<select name="criticidad_c" class="select_bloque">
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
@@ -106,13 +135,35 @@
 						</li>
 						<li class="li_bloque">
 							<label class="etiquetas_bloque" for="municipio">Municipio</label>
-							<select name="municipio" class="select_bloque">
-								<option value="tlalnepantla">Tlalnepantla</option>
-								<option value="naucalpan">Naucalpan</option>
-								<option value="miguel_hidalgo">Miguel Hidalgo</option>
-								<option value="azcapotzalco">Azcapotzalco</option>
-							</select>
+							<input class="inputs_bloque" type="text" placeholder="Municipio" />
 							<div class="viñeta"></div>
+						</li>
+						<li class="li_bloque">
+							<label class="etiquetas_bloque" for="observaciones">Observaciones</label>
+							<textarea class="textarea_bloque" name="observaciones" placeholder="Observaciones"></textarea>
+							<div class="viñeta"></div>
+						</li>
+						<li class="li_bloque">
+							<label class="etiquetas_bloque" for="fecha_hora_a">Fecha/Hora</label>
+							<input class="inputs_bloque" type="text" placeholder="Fecha/Hora" readonly />
+							<div class="viñeta"></div>
+						</li>
+						<li class="li_bloque">
+							<label class="etiquetas_bloque" for="fecha_hora_b">Fecha/Hora</label>
+							<input class="inputs_bloque" type="text" placeholder="Fecha/Hora" readonly />
+							<div class="viñeta"></div>
+						</li>
+						<li class="li_bloque">
+							<label class="etiquetas_bloque" for="fecha_hora_c">Fecha/Hora</label>
+							<input class="inputs_bloque" type="text" placeholder="Fecha/Hora" readonly />
+							<div class="viñeta"></div>
+						</li>
+						<li class="li_bloque">
+							<label class="etiquetas_bloque" for="revisada">Revisada</label>
+							<input class="radio_bloque" type="radio" name="revisada" value="si">
+							<label for="revisada"><span><span></span></span>Si</label>
+							<input class="radio_bloque" type="radio" name="revisada" value="no" checked="checked">
+							<label for="revisada"><span><span></span></span>No</label>
 						</li>
 					</ul>
 				</div>
