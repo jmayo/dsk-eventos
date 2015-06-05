@@ -1,10 +1,7 @@
 $(function() {
   Personal.app = new Personal.Router();
  
-  Personal.app.on("route:personal",Personal.app.ContenidoVista.mostrarMenuPersonal);   
-  Personal.app.on("route:empresa",Personal.app.ContenidoVista.mostrarMenuEmpresas);
-  Personal.app.on("route:movimiento",Personal.app.ContenidoVista.mostrarMenuMovimientos);
-  
+  Personal.app.on("route:eventos",Personal.app.ContenidoVista.mostrarMenuEventos)
   // Backbone.history.stop(); 
    Backbone.history.start({
       root: '/',

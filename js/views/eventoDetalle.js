@@ -1,18 +1,17 @@
-Personal.Views.SucursalDetalle = Backbone.View.extend({
-  events : {
-     "change #sucursal_estado": function(){ this.llenadoComboDependiente(this.catMunicipio,'15', $( "#sucursal_estado").val(),'',"#sucursal_municipio");},
-   },
+Personal.Views.EventoDetalle = Backbone.View.extend({
+  // events : {
+  //    "change #empresa_estado": function(){ this.llenadoComboDependiente(this.catMunicipio,'1', $( "#evento_estado").val(),'',"#evento_municipio");},
+  //  },
 
-  el: $('#bloque_sucursal'),
+  el: $('#bloque_evento'),
   className: 'ul_bloque',
   tagName: 'ul',
-  template: Handlebars.compile($("#sucursal-detalle-template").html()),
+  template: Handlebars.compile($("#eventos-detalle-template").html()),
 
   initialize: function () {
-    if(this.model !==undefined){
-      this.catMunicipio = new Personal.Collections.Catalogos();  
-      this.listenTo(this.model, "change", this.llenado, this);
-    }
+    //this.catMunicipio = new Personal.Collections.Catalogos();  
+    this.catFuente = new Personal.Collections.Catalogos();  
+    this.listenTo(this.model, "change", this.llenado, this);
   },
   reset: function()
   {
@@ -20,38 +19,36 @@ Personal.Views.SucursalDetalle = Backbone.View.extend({
   },
   llenado: function(){
     console.log("llenando el formulario");
-  //  if(this.model.get("id")!=="-1"){
+    if(this.model.get("id")!=="-1"){
       this.render();
-   // }
-  }, 
+    }
+  },
   render: function () {
+  // $('#bloque_sucursal').hide();
+  // $('#bloque_empresa').show();
    console.log("buscando en el render");
    var detalle = this.model.toJSON();
    var html = this.template(detalle);
    this.$el.html(html);
 
-
    var self = this;   
-   $("#sucursal_fecha_alta, #sucursal_fecha_baja").datepicker({dateFormat:"dd/mm/yy"});
- 
-   this.agregarValidacion();
-   
-    var SucursalCatalogos = new Personal.Collections.Catalogos();
-    SucursalCatalogos.claves ="14,24";
+   $("#empresa_fecha_alta").datepicker({dateFormat:"dd/mm/yy"});
   
-    SucursalCatalogos.fetch(
+   this.agregarValidacion();
+
+    var EventoCatalogos = new Personal.Collections.Catalogos();
+    EventoCatalogos.claves ="3";
+  
+    EventoCatalogos.fetch(
       {
         success: function(){
           
-          self.llenadoCatalogosCombo(SucursalCatalogos.Estados(),detalle["cdu_estado"],"#sucursal_estado");
+          self.llenadoCatalogosCombo(EmpresaCatalogos.Fuente(),detalle["cdu_fuente"],"#evento_fuente");
 
-          self.llenadoCatalogosCombo(SucursalCatalogos.Estatus(),detalle["cdu_estatus"],"#sucursal_estatus");
         }
           
     });
 
-
-          this.llenadoComboDependiente(this.catMunicipio,'15', detalle["cdu_estado"],detalle["cdu_municipio"],"#sucursal_municipio");
 
     },
     llenadoCatalogosCombo: function(catalogo,cdu_seleccion,id_selector){
@@ -72,66 +69,46 @@ Personal.Views.SucursalDetalle = Backbone.View.extend({
                   vista.render();
                 }
             });
-    //  this.mostrarSucursalLista(this.model.get("id"));
-    //this.mostrarMapa(this.model.get("latitud"),this.model.get("longitud"));
-   },
+      this.mostrarSucursalLista(this.model.get("id"));
+     
+      },
 relacionColumnas: function(){
       var columnasCampos ={
-     		"id": "#sucursal_id",
-				"cve_empresa": "#empresa_id",
-				"cve_sucursal": "#sucursal_cve_sucursal",
-        "nombre": "#sucursal_nombre",
-				"calle": "#sucursal_calle",
-				"numero": "#sucursal_numero",
-				"colonia": "#sucursal_colonia",
-				"cp": "#sucursal_cp",
-				"cdu_estado": "#sucursal_estado",
-				"cdu_municipio": "#sucursal_municipio",
-				"ciudad": "#sucursal_ciudad",
-				"telefono": "#sucursal_telefono",
-				"cdu_estatus": "#sucursal_estatus",
-				"fecha_alta":"#sucursal_fecha_alta",
-        "fecha_baja":"#sucursal_fecha_alta",
-        "latitud":"#sucursal_latitud",
-        "longitud":"#sucursal_longitud",        
-      };
+     		"id": "#evento_id",
+				"descripcion": "#evento_descripcion",
+				"cdu_fuente": "#evento_fuente",
+			     };
       return columnasCampos;
-},
+   },
 guardar: function(){
     var data =this.generarJSON();
-    var self = this;
-    var model = new Personal.Models.sucursal(data);
-    //model.valor = undefined;
+     var self = this;
+    var model = new Personal.Models.empresa(data);
+    model.valor = undefined;
     model.pk= data["id"];
+    
     this.tipo='POST'
-    if(model.get("id")!=="-1"){
+    if(window.Personal.operacion!=="nuevo"){
       this.tipo='PUT';
     }
    
     model.save(null,{
         type: self.tipo,
         success: function(model,response) {
-            $('#sucursal_id').text(model.get("id"));
-             Personal.app.SucursalLista.model.set(response.toJSON());
-            //window.Personal.operacion="buscar";
+            $('#empresa_id').text(model.get("id"));
+            self.mostrarDescripcion(model);
+            self.mostrarSucursalLista(model.get("id"));
+            window.Personal.operacion="buscar";
             $("#notify_success").notify();
           },
         error: function(model,response, options) {
              $("#notify_error").notify();
               console.log(response.responseText);
-             // var responseObj = $.parseJSON(response.responseText);
-             // console.log(responseObj);
-   //           for(campo in responseObj){ console.log(campo); }
         }
 
     });
-    //CREAETE SEND POST
-    // PARA PATCH:
-    //model.clear().set({id: 1, a: 1, b: 2, c: 3, d: 4}); 
-    //model.save();
-    //model.save({b: 2, d: 4}, {patch: true});
-
   },
+  
 generarJSON: function(){
       var data ={};
       var relacion =this.relacionColumnas();
@@ -158,10 +135,9 @@ generarJSON: function(){
       }
       return data;
    },
-agregarValidacion: function(){
+  agregarValidacion: function(){
       var relacion =this.relacionColumnas();
-      var suc = new Personal.Models.sucursal();
-      var listaVal = suc.validation();
+      var listaVal = Personal.app.EventoModelo.validation();
       for(var campo in relacion){
           if (relacion.hasOwnProperty(campo)){
             var id_control = relacion[campo];

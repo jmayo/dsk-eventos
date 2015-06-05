@@ -1,4 +1,4 @@
-Personal.Collections.Empresas = Backbone.Collection.extend({
+Personal.Collections.Eventos = Backbone.Collection.extend({
   initialize: function(){
   		this.valor = null;
   		this.pk = null;
@@ -10,7 +10,7 @@ Personal.Collections.Empresas = Backbone.Collection.extend({
       this.pk  = pk;
   },
   url : function(){
-    var direccion = window.ruta + 'empresa/';
+    var direccion = window.ruta + 'eventos/';
 
   	if(this.pk!== undefined && this.pk!== null){
    	  direccion = direccion + this.pk + '/';
@@ -21,5 +21,5 @@ Personal.Collections.Empresas = Backbone.Collection.extend({
    return direccion;
   },
   
-  model: Personal.Models.empresa,
+  model: Personal.Models.evento,
 });
