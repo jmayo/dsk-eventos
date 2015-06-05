@@ -1,0 +1,22 @@
+Estimados Juan y Quique, los campos que considero deben contemplarse son los siguientes:
+
+Perfil capturista
+Estos son las entradas generales pre - valoradas.
+
+    Descripción del evento. (campo libre)
+    Fuente. (De un catálogo)
+    Criticidad. (Valoración del 1 al 7)
+    Reporta. (Campo libre, solo permite letras)
+    Estado. (De catálogo)
+    Municipio. (De catálogo)
+
+
+Perfil evaluador
+
+Este perfil sólo agrega criticidad 
+
+    Criticidad evaluador (Valoración del 1 al 7)
+
+Como siempre se los he comentado, gracias por todo !!!
+
+Saludos.
