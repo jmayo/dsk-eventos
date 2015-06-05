@@ -24,19 +24,19 @@ Personal.Models.evento = Backbone.Model.extend({
    return direccion;
   },
   defaults : {
-        "id": "",
+        "id": "1",
         "descripcion": "",
         "cdu_fuente": "0030001",
-        "criticidad_capturista": 1,
-        "criticidad_evaluador": 1,
-        "reporta": "",
-        "cdu_estado": "0010000",
-        "cdu_municipio": "0020000",
-        "observaciones": "",
-        "fecha_capturista": "01/01/1900",
-        "fecha_filtro": "01/01/1900",
-        "fecha_evaluador": "01/01/1900",
-        "revisada": false
+        // "criticidad_capturista": 1,
+        // "criticidad_evaluador": 1,
+        // "reporta": "",
+        // "cdu_estado": "0010000",
+        // "cdu_municipio": "0020000",
+        // "observaciones": "",
+        // "fecha_capturista": "01/01/1900",
+        // "fecha_filtro": "01/01/1900",
+        // "fecha_evaluador": "01/01/1900",
+        // "revisada": false
     },
 
   camposValidar: function(){

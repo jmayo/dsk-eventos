@@ -43,7 +43,7 @@ Personal.Views.EventoDetalle = Backbone.View.extend({
       {
         success: function(){
           
-          self.llenadoCatalogosCombo(EmpresaCatalogos.Fuente(),detalle["cdu_fuente"],"#evento_fuente");
+          self.llenadoCatalogosCombo(EventoCatalogos.Fuente(),detalle["cdu_fuente"],"#evento_fuente");
 
         }
           
@@ -53,7 +53,7 @@ Personal.Views.EventoDetalle = Backbone.View.extend({
     },
     llenadoCatalogosCombo: function(catalogo,cdu_seleccion,id_selector){
           var cat = new Backbone.Collection(catalogo);
-          var vis = new Personal.Views.PersonalCatalogos({
+          var vis = new Personal.Views.EventoCatalogos({
             collection: cat,cdu_seleccionado:cdu_seleccion,id_select: id_selector });
           vis.render();
 
