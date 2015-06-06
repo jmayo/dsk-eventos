@@ -15,7 +15,7 @@ Personal.Models.evento = Backbone.Model.extend({
   url : function(){
    var direccion = window.ruta + 'eventos/';
    if(this.pk!== undefined && this.pk!== null){
-      if(window.Personal.operacion==='buscar' && this.pk!==""){
+      if(this.pk!==""){
    	    direccion = direccion + this.pk + '/';
       }
    } 
@@ -26,14 +26,14 @@ Personal.Models.evento = Backbone.Model.extend({
   },
   defaults : {
         "id": "",
-        "descripcion": "Descripcion",
-        "cdu_fuente": "0030001",
-         "criticidad_capturista": 2,
-         "criticidad_evaluador": 3,
-         "reporta": "a",
-         "cdu_estado": "0010009",
-         "cdu_municipio": "0020268",
-         "observaciones": "Observaciones",
+        "descripcion": "",
+        "cdu_fuente": "0030008",
+         "criticidad_capturista": 1,
+         "criticidad_evaluador": 1,
+         "reporta": "",
+         "cdu_estado": "0010015",
+         "cdu_municipio": "0020691",
+         "observaciones": "",
          "fecha_capturista": "05/06/2015",
          "fecha_filtro":  "06/06/2015",
          "fecha_evaluador":  "07/06/2015",
@@ -46,7 +46,7 @@ Personal.Models.evento = Backbone.Model.extend({
       vali.Campo('criticidad_capturista',1,10,vali.Numeros());
       vali.Campo('criticidad_evaluador',1,10,vali.Numeros());
       vali.Campo('reporta',1,100,vali.AlfaNumerico()); 
-      vali.Campo('observaciones',1,1000,vali.AlfaNumerico()); 
+      vali.Campo('observaciones',0,1000,vali.AlfaNumerico()); 
       vali.Campo('fecha_capturista',1,10,vali.Fecha()); 
       vali.Campo('fecha_filtro',1,10,vali.Fecha()); 
       vali.Campo('fecha_evaluador',1,10,vali.Fecha()); 

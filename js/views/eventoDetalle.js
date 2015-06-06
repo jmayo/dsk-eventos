@@ -1,5 +1,6 @@
 Personal.Views.EventoDetalle = Backbone.View.extend({
   events : {
+     "mousedown #evento_revisado": "seleccionado",
      "change #evento_estado": function(){ this.llenadoComboDependiente(this.catMunicipio,'2', $( "#evento_estado").val(),'',"#evento_municipio");},
    },
 
@@ -8,6 +9,39 @@ Personal.Views.EventoDetalle = Backbone.View.extend({
   tagName: 'ul',
   template: Handlebars.compile($("#eventos-detalle-template").html()),
 
+  seleccionado: function(event){
+    var data =this.generarJSON();
+    data.revisada =true
+    data.fecha_capturista ="05/06/2015";
+    data.fecha_filtro ="05/06/2015";
+    data.fecha_evaluador="05/06/2015";
+
+
+    var self = this;
+    var model = new Personal.Models.evento(data);
+    model.valor = undefined;
+    model.pk= data.id;
+    this.tipo='PUT';
+   
+    model.save(null,{
+        type: self.tipo,
+        success: function(model,response) {
+            $('#evento_id').text(model.get("id"));
+           // self.mostrarDescripcion(model);
+           // self.mostrarSucursalLista(model.get("id"));
+            window.Personal.operacion="buscar";
+            $("#notify_success").notify();
+              Personal.app.EventosListadoVista.cargarLista();
+          
+          },
+        error: function(model,response, options) {
+             $("#notify_error").notify();
+              console.log(response.responseText);
+        }
+
+    });
+    
+  },
   initialize: function () {
     this.catMunicipio = new Personal.Collections.Catalogos();  
     this.catFuente = new Personal.Collections.Catalogos();  
@@ -30,6 +64,8 @@ Personal.Views.EventoDetalle = Backbone.View.extend({
    var detalle = this.model.toJSON();
    var html = this.template(detalle);
    this.$el.html(html);
+   $( '#criticidad_evaluador' ).val(detalle.criticidad_evaluador);
+   $( '#criticidad_capturista' ).val(detalle.criticidad_capturista);
 
    var self = this;   
    $("#empresa_fecha_alta").datepicker({dateFormat:"dd/mm/yy"});
@@ -80,21 +116,29 @@ relacionColumnas: function(){
         "reporta": "#evento_reporta",
         "cdu_estado": "#evento_estado",
         "cdu_municipio": "#evento_municipio",
-        "fecha_capturista": "#evento_fecha_capturista",
-        "fecha_filtro": "#evento_fecha_filtro",
-        "fecha_evaluador": "#evento_fecha_evaluador",
-        "revisada": "#evento_revisada_1",
+        "criticidad_capturista": "#criticidad_capturista",
+        "criticidad_evaluador": "#criticidad_evaluador",
+        "observaciones": "#evento_observaciones",
+        //"fecha_capturista": "#evento_fecha_capturista",
+        //"fecha_filtro": "#evento_fecha_filtro",
+        //"fecha_evaluador": "#evento_fecha_evaluador",
+        //"revisada": "#evento_revisada_1",
 			     };
       return columnasCampos;
    },
 guardar: function(){
     var data =this.generarJSON();
+    data.criticidad_evaluador =data.criticidad_capturista
+    
+     data.fecha_capturista ="05/06/2015";
+    data.fecha_filtro ="05/06/2015";
+    data.fecha_evaluador="05/06/2015";
+
+
      var self = this;
     var model = new Personal.Models.evento(data);
     model.valor = undefined;
     model.pk= data["id"];
-    
-   debugger;
     this.tipo='POST'
     if(window.Personal.operacion!=="nuevo"){
       this.tipo='PUT';
@@ -108,6 +152,8 @@ guardar: function(){
            // self.mostrarSucursalLista(model.get("id"));
             window.Personal.operacion="buscar";
             $("#notify_success").notify();
+          
+            Personal.app.EventosListadoVista.cargarLista();
           },
         error: function(model,response, options) {
              $("#notify_error").notify();
@@ -131,6 +177,10 @@ generarJSON: function(){
 
            if (elemento === "LABEL"){
               data[campo] = $(id_control).text();
+           }
+           else if(elemento==="SELECT" && (campo==='criticidad_capturista' || campo==='criticidad_evaluador')){
+              data[campo]=$( id_control + ' option:selected' ).text(); 
+              debugger;
            }      
            else if (elemento === "INPUT" || elemento==='TEXTAREA' || elemento==="SELECT"){
               if(tipo=='radio'){

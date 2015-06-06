@@ -9,17 +9,17 @@ Personal.Views.CajaOperaciones = Backbone.View.extend({
    },
    nuevo: function(){
       console.log("nuevo registro");
-      if(window.Personal.menu==="eventos"){
+      //if(window.Personal.menu==="eventos"){
          Personal.app.navigate("Eventos/nuevo/", {trigger: true, replace: true});
-       }
+      // }
       
    },
   guardar: function(){
     console.log("guardando");
     
-    if(window.Personal.menu==="eventos"){
+    //if(window.Personal.menu==="eventos"){
       Personal.app.EventoDetalle.guardar();
       console.log("guardando eventos");
-    }
+   // }
   }
 });

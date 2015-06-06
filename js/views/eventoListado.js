@@ -16,7 +16,7 @@ Personal.Views.EventoListados = Backbone.View.extend({
       this.$el.prepend(busquedaView.render().el);  
     }
     else{
-      this.$el.append(busquedaView.render().el);
+      this.$el.prepend(busquedaView.render().el);
     }
   },
    limpiarTodo:function(){

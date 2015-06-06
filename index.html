@@ -158,7 +158,7 @@
         	valor = 'value="'+ options.hash.valor + '"';
          }
 
-        return '<input '+ input_id + ' class="inputs_bloque" type="text" placeholder="'+ input_desc + '" ' +valor + ' style="text-transform:uppercase ;" />';
+        return '<input  '+ input_id + ' class="inputs_bloque" type="text" placeholder="'+ input_desc + '" ' +valor + ' style="text-transform:uppercase ;" />';
       });
 
 	//Helper para cajas de texto
@@ -212,7 +212,7 @@
     Handlebars.registerHelper('grp_perdet',function(contenido, options){
 		var res1 =Handlebars.helpers.titulos_caja(contenido, options)
 		var res2 =Handlebars.helpers.valores_caja(options)
-		return '<li class="li_bloque">' + res1 + res2 + '<div class="viñeta"></div>' + '</li>';
+		return '<li class="li_bloque">' + res1 + res2 + '<div  class="viñeta"></div>' + '</li>';
 		}
     );
   
@@ -264,7 +264,7 @@
 
 <script id="resultados-evento-listado-template" type="text/x-handlebars-template">
 		<div class="div_servicio">
-		{{id}} {{descripcion}}
+		{{id}}: {{descripcion}}, {{criticidad_capturista}},{{reporta}}
 		</div>
  </script>
 
@@ -280,8 +280,8 @@
 		{{{grp_perdetTextArea "Descripción" textarea_id='evento_descripcion' valor=descripcion   label_desc='descripcion' textarea_desc='Descripción'}}}
   		{{{grp_combo "Fuente"    label_desc='fuente' select_name='fuente' select_id='evento_fuente'}}} 
   		<li class="li_bloque">
-			<label class="etiquetas_bloque" for="criticidad_capturista">Criticidad Inicial</label>
-			<select name="criticidad_capturista" class="select_bloque">
+			<label  class="etiquetas_bloque" for="criticidad_capturista">Criticidad Inicial</label>
+			<select  id="criticidad_capturista" name="criticidad_capturista" class="select_bloque">
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
@@ -294,7 +294,7 @@
 		</li>
 		<li class="li_bloque">
 			<label class="etiquetas_bloque" for="criticidad_evaluador">Criticidad Final</label>
-			<select name="criticidad_evaluador" class="select_bloque">
+			<select id="criticidad_evaluador" name="criticidad_evaluador" class="select_bloque">
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
@@ -311,13 +311,14 @@
 		{{{grp_combo "Municipio"    label_desc='municipio' select_name='evento_municipio' select_id='evento_municipio'}}}		
 	{{{grp_perdetTextArea "Observaciones" textarea_id='evento_observaciones' valor=observaciones   label_desc='observaciones' textarea_desc='Observaciones'}}}
 
-	{{{grp_perdet "Fecha Captura" valor=fecha_capturista input_id='evento_fecha_capturista' label_desc='fecha_capturista' input_desc='Fecha de Captura'}}}
-	{{{grp_perdet "Fecha Revisión" valor=fecha_filtro input_id='evento_fecha_filtro' label_desc='fecha_filtro' input_desc='Fecha de Revisión'}}}
-	{{{grp_perdet "Fecha Evaluación" valor=fecha_evaluador input_id='evento_fecha_evaluador' label_desc='fecha_evaluador' input_desc='Fecha de Evaluación'}}}
+	{{{titulos_caja fecha_capturista label_desc="fecha_capturista" label_id='fecha_capturista'}}}
+	{{{titulos_caja fecha_filtro label_desc="fecha_filtro" label_id='fecha_filtro'}}}
+	{{{titulos_caja fecha_evaluador label_desc="fecha_evaluador" label_id='fecha_evaluador'}}} 
+		<li class="li_bloque">
+			<a href="#" id="evento_revisado" class="boton">Si</a>
+		</li>
+			<label class="etiquetas_bloque" for="revisada">Revisada</label>
 
-	{{{grp_options "revisada"  radio_id='evento_revisada' label_desc='revisada' op1_titulo="Si" op2_titulo="No" op1_val=true op2_val=false  op1_checado=revisada radio_name='evento_revisada' input_booleano=revisada}}}   
-		
-  		
 
   		</ul>
 	</div>
