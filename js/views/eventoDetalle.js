@@ -83,17 +83,18 @@ relacionColumnas: function(){
         "fecha_capturista": "#evento_fecha_capturista",
         "fecha_filtro": "#evento_fecha_filtro",
         "fecha_evaluador": "#evento_fecha_evaluador",
-        "revisada": "#evento_revisada",
+        "revisada": "#evento_revisada_1",
 			     };
       return columnasCampos;
    },
 guardar: function(){
     var data =this.generarJSON();
      var self = this;
-    var model = new Personal.Models.empresa(data);
+    var model = new Personal.Models.evento(data);
     model.valor = undefined;
     model.pk= data["id"];
     
+   debugger;
     this.tipo='POST'
     if(window.Personal.operacion!=="nuevo"){
       this.tipo='PUT';
@@ -102,9 +103,9 @@ guardar: function(){
     model.save(null,{
         type: self.tipo,
         success: function(model,response) {
-            $('#empresa_id').text(model.get("id"));
-            self.mostrarDescripcion(model);
-            self.mostrarSucursalLista(model.get("id"));
+            $('#evento_id').text(model.get("id"));
+           // self.mostrarDescripcion(model);
+           // self.mostrarSucursalLista(model.get("id"));
             window.Personal.operacion="buscar";
             $("#notify_success").notify();
           },
@@ -121,6 +122,7 @@ generarJSON: function(){
       var relacion =this.relacionColumnas();
       for(var campo in relacion)
       {
+        console.log(campo)
         if (relacion.hasOwnProperty(campo))
         {
            var elemento  =$(relacion[campo]).get(0).tagName;

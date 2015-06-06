@@ -2,13 +2,14 @@ Personal.Router = Backbone.Router.extend({
   routes: {
     "": "root",
     "Eventos": "evento",
-    "Eventos/nuevo/": "EventoNuevo",
+    "Eventos/nuevo/": "eventoNuevo",
     //"Eventos/buscar/:valor_buscado": "eventoFolio",
   },
 
 initialize: function () {
     //104.236.232.238:8000
-    window.ruta="http://192.168.0.14:8000/";
+    //winow.ruta="http://192.168.0.14:8000/";
+     window.ruta="http://localhost:8001/";
     //window.ruta ="http://10.0.1.147:8000/";
  
 

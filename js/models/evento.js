@@ -4,7 +4,8 @@ Personal.Models.evento = Backbone.Model.extend({
   		this.pk = null;
       
       this.camposValidar();
-  },
+      this.date = new Date();
+},
  valor : function(valor){
       this.valor  = valor;
   },
@@ -12,7 +13,7 @@ Personal.Models.evento = Backbone.Model.extend({
       this.pk  = pk;
   },
   url : function(){
-   var direccion = window.ruta + 'evento/';
+   var direccion = window.ruta + 'eventos/';
    if(this.pk!== undefined && this.pk!== null){
       if(window.Personal.operacion==='buscar' && this.pk!==""){
    	    direccion = direccion + this.pk + '/';
@@ -24,7 +25,7 @@ Personal.Models.evento = Backbone.Model.extend({
    return direccion;
   },
   defaults : {
-        "id": "1",
+        "id": "",
         "descripcion": "Descripcion",
         "cdu_fuente": "0030001",
          "criticidad_capturista": 2,
@@ -33,9 +34,9 @@ Personal.Models.evento = Backbone.Model.extend({
          "cdu_estado": "0010009",
          "cdu_municipio": "0020268",
          "observaciones": "Observaciones",
-         "fecha_capturista": "02/01/1900",
-         "fecha_filtro": "03/01/1900",
-         "fecha_evaluador": "04/01/1900",
+         "fecha_capturista": "05/06/2015",
+         "fecha_filtro":  "06/06/2015",
+         "fecha_evaluador":  "07/06/2015",
          "revisada": false
     },
 
