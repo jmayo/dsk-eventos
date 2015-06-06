@@ -16,7 +16,7 @@ Personal.Collections.Eventos = Backbone.Collection.extend({
    	  direccion = direccion + this.pk + '/';
     }
     if(this.valor!== undefined && this.valor!== null){
-   	  direccion = direccion + 'buscar/' + this.valor + '/';
+   	  direccion = direccion + this.valor + '/';
     } 
    return direccion;
   },

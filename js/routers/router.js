@@ -14,6 +14,7 @@ initialize: function () {
  
 
     this.Evento = new Personal.Collections.Eventos();          
+    this.EventoListado = new Personal.Collections.Eventos();          
 
     this.MenuVista = new Personal.Views.Menu(); 
 
@@ -21,11 +22,15 @@ initialize: function () {
  
     this.CajaOperaciones= new Personal.Views.CajaOperaciones();
  
+    this.EventosListadoVista = new Personal.Views.EventoListados({collection: this.EventoListado});
+
    
     this.EventoModelo = new Personal.Models.evento();
     this.EventoModelo.set({"id":"-1"});
     this.EventoDetalle = new Personal.Views.EventoDetalle({model: this.EventoModelo});    
     
+    this.EventosListadoVista.cargarLista();
+
     window.Personal.menu="root";
   },
 
