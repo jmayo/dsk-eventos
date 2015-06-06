@@ -78,24 +78,9 @@
 						Folio: Descripción, Criticidad, Reporta
 					</div>
 		    </div>
-			<div id="sucursal_listado">
-				<a href="#" class="lnk_servicio">
-					<div class="div_servicio">1: Robo de casillas, 7, Joaquin Alberto Nuñez Lerma</div>
-				</a>
-				<div class="agregar_servicio"><a href="#" title="Revisado"></a></div>
-				<a href="#" class="lnk_servicio">
-					<div class="div_servicio">2: Borachos haciendo escandalo, 1, Juan Carlos Celis Prado</div>
-				</a>
-				<div class="agregar_servicio"><a href="#" title="Revisado"></a></div>
-				<a href="#" class="lnk_servicio">
-					<div class="div_servicio">3: Propaganda del partido comunista, 5, Cecilia Morena Estrada</div>
-				</a>
-				<div class="agregar_servicio"><a href="#" title="Revisado"></a></div>
-				<a href="#" class="lnk_servicio">
-					<div class="div_servicio">4: Incendio provocado por grupo apolitico, 7, Anonimo</div>
-				</a>
-				<div class="agregar_servicio"><a href="#" title="Revisado"></a></div>
-			</div>
+		       	<div  id="sucursal_listado"> </div>
+		 <!-- Template:	resultados-evento-listado-template -->
+		  	   </article>
 		</article>
 		 <section class="bloque" id="bloque_evento" >	
 				<!-- Template:	eventos-detalle-template	 -->
@@ -279,6 +264,11 @@
 	{{descripcion1}} 
 </script>
 
+<script id="resultados-evento-listado-template" type="text/x-handlebars-template">
+		<div class="div_servicio">
+		{{id}} {{descripcion}}
+		</div>
+ </script>
 
 
 <script id="eventos-detalle-template" type="text/x-handlebars-template">
@@ -326,7 +316,7 @@
 	{{{grp_perdet "Fecha Captura" valor=fecha_capturista input_id='evento_fecha_capturista' label_desc='fecha_capturista' input_desc='Fecha de Captura'}}}
 	{{{grp_perdet "Fecha Revisión" valor=fecha_filtro input_id='evento_fecha_filtro' label_desc='fecha_filtro' input_desc='Fecha de Revisión'}}}
 	{{{grp_perdet "Fecha Evaluación" valor=fecha_evaluador input_id='evento_fecha_evaluador' label_desc='fecha_evaluador' input_desc='Fecha de Evaluación'}}}
-		
+
 	{{{grp_options "revisada"  radio_id='evento_revisada' label_desc='revisada' op1_titulo="Si" op2_titulo="No" op1_val=true op2_val=false  op1_checado=revisada radio_name='evento_revisada' input_booleano=revisada}}}   
 		
   		
@@ -343,6 +333,9 @@
    <script type="text/javascript" src="js/views/eventoCatalogo.js"></script>
  <script type="text/javascript" src="js/views/eventoCatalogos.js"></script> 
   <script type="text/javascript" src="js/views/eventoDetalle.js"></script>
+ 
+  <script type="text/javascript" src="js/views/eventoDescripcion.js"></script>
+  <script type="text/javascript" src="js/views/eventoListado.js"></script>
  
   <script type="text/javascript" src="js/routers/router.js"></script>
   <script type="text/javascript" src="js/main.js"></script> 
