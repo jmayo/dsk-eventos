@@ -50,6 +50,8 @@ Personal.Models.evento = Backbone.Model.extend({
       vali.Campo('fecha_capturista',1,10,vali.Fecha()); 
       vali.Campo('fecha_filtro',1,10,vali.Fecha()); 
       vali.Campo('fecha_evaluador',1,10,vali.Fecha()); 
+      //vali.Campo('cdu_fuente',0,7,vali.Fuente()); 
+      
       this.listado = vali.Listado();
   },
   validation: function() {

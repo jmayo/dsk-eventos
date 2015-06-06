@@ -57,7 +57,9 @@
 	</header>
 	<nav>
 		<ul class="menu">
-			<li><a class="catalogos" href="#"></a></li>
+			<li><a class="catalogos0" href="#">Capturar</a></li>
+			<li><a class="catalogos1" href="#">Revisar</a></li>
+
 			<li><a class="eventos" href="#"></a></li>
 			<li><a class="cerrar_sesion" href="#"></a></li>
 		</ul>
@@ -65,7 +67,6 @@
 	<div class="caja_acciones">
 		<ul class="menu_acciones">
 			<li><a href="#" class="nuevo"></a></li>
-			<li><a href="#" class="eliminar"></a></li>
 			<li><a href="#" class="guardar"></a></li>
 		</ul>
 	</div>
@@ -279,7 +280,7 @@
 		{{{titulos_caja id label_desc="id_principal" label_id='evento_id'}}}
 		{{{grp_perdetTextArea "Descripción" textarea_id='evento_descripcion' valor=descripcion   label_desc='descripcion' textarea_desc='Descripción'}}}
   		{{{grp_combo "Fuente"    label_desc='fuente' select_name='fuente' select_id='evento_fuente'}}} 
-  		<li class="li_bloque">
+  		<li class="li_bloque critini">
 			<label  class="etiquetas_bloque" for="criticidad_capturista">Criticidad Inicial</label>
 			<select  id="criticidad_capturista" name="criticidad_capturista" class="select_bloque">
 				<option value="1">1</option>
@@ -292,7 +293,7 @@
 			</select>
 			<div class="viñeta"></div>
 		</li>
-		<li class="li_bloque">
+		<li class="li_bloque critifin">
 			<label class="etiquetas_bloque" for="criticidad_evaluador">Criticidad Final</label>
 			<select id="criticidad_evaluador" name="criticidad_evaluador" class="select_bloque">
 				<option value="1">1</option>
@@ -315,9 +316,9 @@
 	{{{titulos_caja fecha_filtro label_desc="fecha_filtro" label_id='fecha_filtro'}}}
 	{{{titulos_caja fecha_evaluador label_desc="fecha_evaluador" label_id='fecha_evaluador'}}} 
 		<li class="li_bloque">
-			<a href="#" id="evento_revisado" class="boton">Si</a>
+			<a href="#" id="evento_revisado" class="boton revisado">Si</a>
 		</li>
-			<label class="etiquetas_bloque" for="revisada">Revisada</label>
+			<label class="etiquetas_bloque revisado" for="revisada">Revisada</label>
 
 
   		</ul>
@@ -339,7 +340,6 @@
   <script type="text/javascript" src="js/routers/router.js"></script>
   <script type="text/javascript" src="js/main.js"></script> 
    <script type="text/javascript" src="js/views/menu.js"></script>
-
-
+	<script type="text/javascript" src="js/views/body.js"></script>
 </body>
 </html>

@@ -12,9 +12,9 @@ Personal.Views.EventoDetalle = Backbone.View.extend({
   seleccionado: function(event){
     var data =this.generarJSON();
     data.revisada =true
-    data.fecha_capturista ="05/06/2015";
-    data.fecha_filtro ="05/06/2015";
-    data.fecha_evaluador="05/06/2015";
+    data.fecha_capturista =new Date('01/01/1900').toISOString()
+    data.fecha_filtro =new Date().toISOString()
+    data.fecha_evaluador=new Date().toISOString()
 
 
     var self = this;
@@ -32,6 +32,7 @@ Personal.Views.EventoDetalle = Backbone.View.extend({
             window.Personal.operacion="buscar";
             $("#notify_success").notify();
               Personal.app.EventosListadoVista.cargarLista();
+               $('#bloque_evento').hide(); 
           
           },
         error: function(model,response, options) {
@@ -130,9 +131,9 @@ guardar: function(){
     var data =this.generarJSON();
     data.criticidad_evaluador =data.criticidad_capturista
     
-     data.fecha_capturista ="05/06/2015";
-    data.fecha_filtro ="05/06/2015";
-    data.fecha_evaluador="05/06/2015";
+    data.fecha_capturista =new Date().toISOString()
+    data.fecha_filtro =new Date('01/01/1900').toISOString()
+    data.fecha_evaluador=new Date('01/01/1900').toISOString()
 
 
      var self = this;
@@ -180,7 +181,6 @@ generarJSON: function(){
            }
            else if(elemento==="SELECT" && (campo==='criticidad_capturista' || campo==='criticidad_evaluador')){
               data[campo]=$( id_control + ' option:selected' ).text(); 
-              debugger;
            }      
            else if (elemento === "INPUT" || elemento==='TEXTAREA' || elemento==="SELECT"){
               if(tipo=='radio'){
@@ -198,6 +198,7 @@ generarJSON: function(){
       var relacion =this.relacionColumnas();
       var listaVal = Personal.app.EventoModelo.validation();
       for(var campo in relacion){
+          debugger;
           if (relacion.hasOwnProperty(campo)){
             var id_control = relacion[campo];
             var validacion =listaVal[campo];

@@ -28,7 +28,5 @@ Personal.Views.EventoListados = Backbone.View.extend({
     this.collection.valor = 'norevisado';
     this.collection.reset();
     this.collection.fetch().always(function(){})    
-
   },
-  
 });

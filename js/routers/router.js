@@ -3,6 +3,9 @@ Personal.Router = Backbone.Router.extend({
     "": "root",
     "Eventos": "evento",
     "Eventos/nuevo/": "eventoNuevo",
+    "EventosCapturista": "eventoCapturista",
+    "EventosRevisor": "eventoRevisor",
+    
     //"Eventos/buscar/:valor_buscado": "eventoFolio",
   },
 
@@ -11,6 +14,9 @@ initialize: function () {
     window.ruta="http://192.168.0.14:8001/";
     // window.ruta="http://localhost:8001/";
     //window.ruta ="http://10.0.1.147:8000/";
+     $('#sucursal_padre').hide(); 
+    $('#sucursal_listado').hide(); 
+    $('#bloque_evento').hide(); 
  
 
     this.Evento = new Personal.Collections.Eventos();          
@@ -31,7 +37,9 @@ initialize: function () {
     
     this.EventosListadoVista.cargarLista();
 
+   this.Body = new Personal.Views.Body();
     window.Personal.menu="root";
+    window.Personal.op="";
   },
 
   root: function () {
@@ -65,8 +73,49 @@ initialize: function () {
   
     console.log("nuevo evento");
   },
+   eventoCapturista: function () {
+   // window.Personal.menu="personal";
+    window.Personal.operacion="nuevo";
+    window.Personal.op = "capturar";
+    $('#sucursal_padre').hide(); 
+    $('#sucursal_listado').hide(); 
+    $('#bloque_evento').show(); 
+     
+    //Cambiamos el valor del id para que detecte cambio en el modelo 
+    //Cuando le mandamos los valores por defecto
+    this.EventoModelo.set({"id":"-1"});
+    this.EventoModelo.set(this.EventoModelo.defaults);
+    
+    $('#fecha_capturista').hide();  
+    $('#fecha_filtro').hide();  
+    $('#fecha_evaluador').hide();  
 
+    $('.guardar').show();
+    $('.nuevo').show();
+    $('.critifin').hide();
+    $('.revisado').hide();
+  
+    console.log("nuevo evento");
+  },
+  eventoRevisor: function(){
+      window.Personal.op = "revisar";
+      this.EventosListadoVista.cargarLista();
+      $('#sucursal_padre').show();
+      $('#sucursal_listado').show(); 
+      $('#bloque_evento').show(); 
 
+      this.EventoModelo.set({"id":"-1"});
+      this.EventoModelo.set(this.EventoModelo.defaults);
+
+      $('.guardar').hide();
+      $('.nuevo').hide();
+      $('#fecha_capturista').show();  
+      $('#fecha_filtro').hide();  
+      $('#fecha_evaluador').hide();  
+      $('.critifin').show();
+      $('.revisado').show();
+      console.log("nuevo evento"); 
+  },
 //***** FUNCIONES GENERICAS ****************
   fetchData:function(ruta_json,funcion_llenado,clave){
       var self = this;

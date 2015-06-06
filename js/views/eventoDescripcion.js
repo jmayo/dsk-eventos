@@ -27,6 +27,10 @@ Personal.Views.EventoDescripcion = Backbone.View.extend({
       this.EventoModelo.pk = this.model.get("id");
       this.EventoDetalle = new Personal.Views.EventoDetalle({model: this.EventoModelo});
       this.EventoModelo.fetch();
+      $('#fecha_capturista').show();  
+      $('#fecha_filtro').hide();  
+      $('#fecha_evaluador').hide()
+       $('#bloque_evento').show(); 
      }
  },
 });

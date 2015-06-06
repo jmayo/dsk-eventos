@@ -42,6 +42,11 @@ return {
 		var mensaje= " acepta cualquier caracter";
 		return {regex,mensaje};;
 	},
+	Fuente: function(){
+		var regex ='0030008'
+		var mensaje= "debe ser una fecha correcta";
+		return {regex,mensaje};
+	},
 	Campo: function(campo,min,longitud,expmsg,mensaje){
 	  var req =  ((min === 0) ? false :true);
 	  var msg= mensaje;
